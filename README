@@ -1,8 +1,0 @@
-jsHtmlToText is a *very* basic regex-based HTML stripper. 
-
-It was created for a custom WebTV widget framework, which did not support other existing implementations.
-
-Use it when:
-* you need a minimal implementation
-* don't have access to a proper JavaScript implementation (it was originally written for Konqueror )
-* there no strong security requirements
