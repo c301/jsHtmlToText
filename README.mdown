@@ -3,8 +3,8 @@ jsHtmlToText is a basic regex-based HTML stripper.
 ### How it works
 
 1. It removes all linebreaks, script-tags, styles, comments and DOCTYPE.
-2. Replaces most of block tags with double newlines.
-3. Replaces some of the block tags with a single newline.
+2. Replaces most of block tags with double newlines or special replacers ( for example: 'li' replaced by '\n* ', to show points before list items ).
+3. Replaces some of the block tags with a single newline or special replacers ( for example: 'li' replaced by '\n* ', to show points before list items ).
 4. Replaces &lt;br&gt; with a single newline.
 5. Removes all html-tags left after steps 1-4
 6. Makes sure there are no more that two linebreaks in a row, removes linebreaks at the start and at the end of string, trims rightmost whitespaces and decodes html entities such as &nbsp;
