@@ -18,10 +18,15 @@ HTML decoding functionality provided by: http://code.google.com/p/google-trekker
 
 
 function htmlToText(html, extensions) {
-    var text = html;
+    var text = html, replacers;
 
     if (extensions && extensions['preprocessing'])
         text = extensions['preprocessing'](text);
+
+    //if we want to replace some tags not only by new line
+    replacers = {
+      'li': "\n* "
+    };
 
     text = text
         // Remove line breaks
@@ -52,12 +57,14 @@ function htmlToText(html, extensions) {
 
     for (i = 0; i < doubleNewlineTags.length; i++) {
         var r = RegExp('</?\\s*' + doubleNewlineTags[i] + '[^>]*>', 'ig');
-        text = text.replace(r, '\n\n');
+        var decoration = replacers[doubleNewlineTags[i]] ? replacers[doubleNewlineTags[i]] : '\n\n';
+        text = text.replace(r, decoration);
     }
 
     for (i = 0; i < singleNewlineTags.length; i++) {
         var r = RegExp('<\\s*' + singleNewlineTags[i] + '[^>]*>', 'ig');
-        text = text.replace(r, '\n');
+        var decoration = replacers[singleNewlineTags[i]] ? replacers[singleNewlineTags[i]] : '\n';
+        text = text.replace(r, decoration);
     }
 
     // Replace <br> and <br/> with a single newline
